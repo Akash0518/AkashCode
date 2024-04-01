@@ -1,0 +1,53 @@
+import java.util.Scanner;
+class Main {
+    
+    // Function to count inversions in an array
+    static int countInversions(int[] arr) {
+        int count = 0;
+        int n = arr.length;
+        
+        // Loop through each pair of elements
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = i + 1; j < n; j++) {
+                // Check if inversion exists
+                if (arr[i] > arr[j]) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+    
+    // Function to calculate sum of digits in base 6
+    static int sumOfDigitsBase6(int num) {
+        int sum = 0;
+        // Convert number to base 6 representation
+        while (num > 0) {
+            sum += num % 6; // Add the least significant digit to sum
+            num /= 6;       // Move to next digit
+        }
+        return sum;
+    }
+    
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt(); // Number of integers
+        int[] sequence = new int[n];
+        
+        // Input sequence of integers
+        for (int i = 0; i < n; i++) {
+            sequence[i] = scanner.nextInt();
+        }
+        
+        // Calculate derived sequence
+        int[] derivedSequence = new int[n];
+        for (int i = 0; i < n; i++) {
+            derivedSequence[i] = sumOfDigitsBase6(sequence[i]);
+        }
+        
+        // Count inversions in derived sequence
+        int inversions = countInversions(derivedSequence);
+        
+        System.out.println(inversions);
+    }
+}
