@@ -1,0 +1,30 @@
+3.Question event management
+
+#include <stdio.h>
+#include <string.h>
+
+void removeCharacters(char *str) {
+    int i, j;
+    int len = strlen(str);
+    for (i = 0, j = 0; i < len; i++) {
+        // Check for the characters to remove: 'E' followed by 'F', '5' followed by '6', and 'G'
+        if ((str[i] == 'E' && str[i+1] == 'F') || (str[i] == '5' && str[i+1] == '6') || (str[i] == 'G')) {
+            i++; // Skip the next character if it's part of the pattern to remove
+        } else {
+            // Copy the character if it's not part of the pattern to remove
+            str[j++] = str[i];
+        }
+    }
+    str[j] = '\0'; // Null-terminate the modified string
+}
+
+int main() {
+    char str[100];
+    scanf("%s", str); // Accept input string
+
+    removeCharacters(str); // Remove specified characters
+
+    printf("%s\n", str); // Print the modified string
+
+    return 0;
+}
