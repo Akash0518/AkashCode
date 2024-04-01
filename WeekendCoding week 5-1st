@@ -1,5 +1,6 @@
-#include <stdio.h>
+1.Question starts with 
 
+#include <stdio.h>
 int main() {
 int N, Q, P, count;
 char str[100];
@@ -37,4 +38,6 @@ printf("%d\n", count);
 }
 
 return 0;
-}aq
+}
+
+
