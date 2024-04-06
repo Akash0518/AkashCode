@@ -1,0 +1,34 @@
+public class MinimumStepsToAnagram {
+
+    public static int minSteps(String s, String t) {
+        if (s.length() != t.length()) {
+            return -1; // Strings must be same length to be anagrams
+        }
+
+        int[] charCount = new int[26]; // Array to count character frequencies
+
+        // Count character frequencies in string s
+        for (char ch : s.toCharArray()) {
+            charCount[ch - 'a']++;
+        }
+
+        int steps = 0;
+
+        // Iterate through string t and decrement counts in charCount
+        for (char ch : t.toCharArray()) {
+            charCount[ch - 'a']--;
+            if (charCount[ch - 'a'] < 0) {
+                steps++; // Increment steps if count becomes negative (mismatched character)
+            }
+        }
+
+        return steps;
+    }
+
+    public static void main(String[] args) {
+        String s = "bab";
+        String t = "aba";
+        int minSteps = minSteps(s, t);
+        System.out.println("Minimum steps required: " + minSteps);
+    }
+}
