@@ -1,4 +1,4 @@
-import java.util.*
+import java.util.*;
 public class MinimumStepsToAnagram {
 
     public static int minSteps(String s, String t) {
@@ -28,8 +28,8 @@ public class MinimumStepsToAnagram {
 
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
-        String s = sc.nextInt();
-        String t = sc.nextInt();
+        String s = sc.nextLine();
+        String t = sc.nextLine();
         int minSteps = minSteps(s, t);
         System.out.println(minSteps);
     }
