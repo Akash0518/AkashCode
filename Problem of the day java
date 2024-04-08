@@ -1,40 +1,191 @@
-import java.util.*;
-class PrimeNumberChecker {
+// You are using Java
+import java.util.Scanner;
 
-    public static boolean isPrime(int num) {
-        if (num <= 1) {
-            return false;  // 1 or less is not prime
-        }
-        if (num <= 3) {
-            return true;  // 2 and 3 are prime
-        }
-        if (num % 2 == 0 || num % 3 == 0) {
-            return false;  // Eliminate multiples of 2 and 3
-        }
-        for (int i = 5; i * i <= num; i += 6) {
-            if (num % i == 0 || num % (i + 2) == 0) {
-                return false;
-            }
-        }
-        return true;
+class Node {
+    int data;
+    Node prev;
+    Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.prev = null;
+        this.next = null;
+    }
+}
+
+class DoublyLinkedList {
+    Node head;
+
+    public DoublyLinkedList() {
+        this.head = null;
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int arr[]= new int[n];
-        for(int i=0;i<n;i++){
-            arr[i]=sc.nextInt();
-        }
-        int a=1;
-        for(int i=0;i<n;i++){
-        if (arr[i]%2==1 && i%2==0 && isPrime(arr[i])) {
-            System.out.print(arr[i] + " ");
-            a=0;
-        } 
-        }
-        if(a==1){
-            System.out.print("No numbers found");
+    public void insertAtFront(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
         }
     }
+
+    public void insertAtEnd(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+   
+
+} else {
+Node temp = head;
+while (temp.next != null) {
+temp = temp.next;
+}
+temp.next = newNode;
+newNode.prev = temp;
+}
+}
+
+public void insertAtPosition(int pos, int data) {
+if (pos < 1) {
+return;
+}
+if (pos == 1) {
+insertAtFront(data);
+return;
+}
+Node newNode = new Node(data);
+Node temp = head;
+for (int i = 1; i < pos - 1 && temp != null; i++) {
+temp = temp.next;
+}
+if (temp == null) {
+return;
+}
+newNode.next = temp.next;
+if (temp.next != null) {
+temp.next.prev = newNode;
+}
+temp.next = newNode;
+newNode.prev = temp;
+}
+
+public void deleteFirst() {
+if (head == null) {
+return;
+}
+head = head.next;
+if (head != null) {
+head.prev = null;
+}
+}
+
+public void deleteEnd() {
+if (head == null) {
+return;
+}
+if (head.next == null) {
+head = null;
+return;
+}
+Node temp = head;
+while (temp.next != null) {
+temp = temp.next;
+}
+temp.prev.next = null;
+}
+
+public void deletePosition(int pos) {
+if (pos < 1 || head == null) {
+return;
+}
+if (pos == 1) {
+deleteFirst();
+return;
+}
+
+
+Node temp = head;
+for (int i = 1; i < pos && temp != null; i++) {
+temp = temp.next;
+}
+if (temp == null) {
+return;
+}
+temp.prev.next = temp.next;
+if (temp.next != null) {
+temp.next.prev = temp.prev;
+}
+}
+
+public void search(int value) {
+Node temp = head;
+while (temp != null) {
+if (temp.data == value) {
+return;
+}
+temp = temp.next;
+}
+System.out.println("The element "+ value+ "is not found in the list");
+}
+
+public void traverse() {
+Node temp = head;
+while (temp != null) {
+System.out.print(temp.data + " ");
+temp = temp.next;
+}
+System.out.println();
+}
+}
+
+public class Main {
+public static void main(String[] args) {
+DoublyLinkedList dll = new DoublyLinkedList();
+Scanner scanner = new Scanner(System.in);
+int choice;
+while (true) {
+
+choice = scanner.nextInt();
+
+switch (choice) {
+case 1:
+int data1 = scanner.nextInt();
+dll.insertAtFront(data1);
+break;
+case 2:
+int data2 = scanner.nextInt();
+dll.insertAtEnd(data2);
+break;
+case 3:
+int pos = scanner.nextInt();
+int data3 = scanner.nextInt();
+dll.insertAtPosition(pos, data3);
+System.out.println("Node Inserted");
+break;
+case 4:
+dll.deleteFirst();
+break;
+case 5:
+dll.deleteEnd();
+break;
+case 6:
+int posDelete = scanner.nextInt();
+dll.deletePosition(posDelete);
+break;
+case 7:
+int value = scanner.nextInt();
+dll.search(value);
+break;
+case 8:
+dll.traverse();
+break;
+case 9:
+System.exit(0);
+default:
+System.out.println("Wrong choice");
+}
+}
+}
 }
