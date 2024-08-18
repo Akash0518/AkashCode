@@ -42,7 +42,7 @@ while(h==0){
                         console.log("Score is: "+sum2);
                     }
                 }
-                if(sum1<sum2){
+                if(sum1>sum2){
                     console.log("---YOU WON---");
                 }
                 else{
@@ -101,6 +101,7 @@ while(h==0){
                 
             }
             default:
+            console.log("Thanks for playing");
                 h=1;
                 
                 
