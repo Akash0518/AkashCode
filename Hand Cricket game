@@ -1,0 +1,108 @@
+console.log("Enter for play");
+console.log("Press any other for exit");
+let h=0;
+while(h==0){
+    let choice=prompt("Enter your choice: ");
+    switch(choice){
+        case "play":
+            let a=prompt("Enter odd or even: ");
+            let b=prompt("Enter a number: ");
+            let c=Math.floor(Math.random() * 11);
+            if((c+b)%2==0&&a=="even"||(c+b)%2==1&&a=="odd"){
+                console.log("You Won The toss and you are Batting");
+                 let sum1 = 0;
+                console.log("Start batting");
+               
+                while(true){
+                    let d1=Math.floor(Math.random() * 11);
+                    let e1=parseInt(prompt("Enter a number: "));
+                    if(d1==e1){
+                        console.log("You lost and your score is "+sum1);
+                        break;
+                        
+                    }
+                    else{
+                        sum1 = sum1 + e1;
+                        console.log("Score is: "+sum1);
+                    }
+                }
+                
+                let sum2=0;
+                console.log("Start bowling");
+                while(true){
+                    let d2=Math.floor(Math.random() * 11);
+                    let e2=parseInt(prompt("Enter a number: "));
+                    if(d2==e2||sum1<sum2){
+                        console.log("computer lost and computer score is "+sum2);
+                        break;
+                        
+                    }
+                    else{
+                        sum2=sum2+d2;
+                        console.log("Score is: "+sum2);
+                    }
+                }
+                if(sum1<sum2){
+                    console.log("---YOU WON---");
+                }
+                else{
+                    console.log("---YOU LOST---");
+                }
+                
+                
+                
+                
+            }
+            else{
+                  console.log("You lost The toss and computer chooses to bat first");
+                  let sum2=0;
+                console.log("Start bowling");
+                while(true){
+                    let d=Math.floor(Math.random() * 11);
+                    let e=parseInt(prompt("Enter a number: "));
+                    if(d==e){
+                        console.log("computer lost and computer score is "+sum2);
+                        break;
+                        
+                    }
+                    else{
+                        sum2=sum2+d;
+                        console.log("Score is: "+sum2);
+                    }
+                }
+                console.log("Start batting");
+                let sum1=0;
+                while(true){
+                    let d=Math.floor(Math.random() * 11);
+                    let e=parseInt(prompt("Enter a number: "));
+                    if(d==e||sum1>sum2){
+                        console.log("You lost and your score is "+sum1);
+                        break;
+                        
+                    }
+                    else{
+                        sum1=sum1+e;
+                        console.log("Score is: "+sum1);
+                    }
+                }
+                if(sum1>sum2){
+                    console.log("---YOU WON---");
+                }
+                else{
+                    if(sum1<sum2){
+                    console.log("---YOU LOST---");
+                    }
+                    else{
+                        console.log("---Game is TIE---");
+                    }
+                }
+                
+                
+                
+            }
+            default:
+                h=1;
+                
+                
+    }
+}
